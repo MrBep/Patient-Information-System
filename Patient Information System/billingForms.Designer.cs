@@ -39,6 +39,7 @@
             this.lblexit = new System.Windows.Forms.Label();
             this.lblmin = new System.Windows.Forms.Label();
             this.userBilling1 = new Patient_Information_System.userBilling();
+            this.transacHistory1 = new Patient_Information_System.TransacHistory();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -173,12 +174,21 @@
             this.userBilling1.TabIndex = 3;
             this.userBilling1.Load += new System.EventHandler(this.userBilling1_Load);
             // 
+            // transacHistory1
+            // 
+            this.transacHistory1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(164)))), ((int)(((byte)(206)))));
+            this.transacHistory1.Location = new System.Drawing.Point(232, 0);
+            this.transacHistory1.Name = "transacHistory1";
+            this.transacHistory1.Size = new System.Drawing.Size(1165, 921);
+            this.transacHistory1.TabIndex = 11;
+            // 
             // frmbilling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(164)))), ((int)(((byte)(206)))));
             this.ClientSize = new System.Drawing.Size(1398, 921);
+            this.Controls.Add(this.transacHistory1);
             this.Controls.Add(this.lblmin);
             this.Controls.Add(this.lblexit);
             this.Controls.Add(this.userBilling1);
@@ -208,5 +218,6 @@
         private userBilling userBilling1;
         private System.Windows.Forms.Label lblexit;
         private System.Windows.Forms.Label lblmin;
+        private TransacHistory transacHistory1;
     }
 }

@@ -36,7 +36,7 @@ namespace Patient_Information_System
             public string PatientName { get; set; }
             public int? Age { get; set; }
             public string Gender { get; set; }
-            public DateTime? DateofVisit { get; set; }
+            public DateTime? Date { get; set; }
         }
         private void LoadAllPatientMedicalRecords()
         {
@@ -71,7 +71,7 @@ namespace Patient_Information_System
                                 PatientName = reader.IsDBNull(reader.GetOrdinal("patient_name")) ? null : reader.GetString("patient_name"),
                                 Age = reader.IsDBNull(reader.GetOrdinal("age")) ? (int?)null : reader.GetInt32("age"),
                                 Gender = reader.IsDBNull(reader.GetOrdinal("gender")) ? null : reader.GetString("gender"),
-                                DateofVisit = reader.IsDBNull(reader.GetOrdinal("date")) ? (DateTime?)null : reader.GetDateTime("date"),
+                                Date = reader.IsDBNull(reader.GetOrdinal("date")) ? (DateTime?)null : reader.GetDateTime("date"),
                             };
 
                             patientList.Add(patient);
@@ -83,12 +83,12 @@ namespace Patient_Information_System
                         dgvAssignedPatients.Columns["PatientName"].Width = 160;
                         dgvAssignedPatients.Columns["Age"].Width = 160;
                         dgvAssignedPatients.Columns["Gender"].Width = 160;
-                        dgvAssignedPatients.Columns["DateofVisit"].Width = 158;
+                        dgvAssignedPatients.Columns["Date"].Width = 158;
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error retrieving patient medical records: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error retrieving patient records: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -107,6 +107,7 @@ namespace Patient_Information_System
 
             }
         }
+
 
         private void Billinghistory_Load(object sender, EventArgs e)
         {

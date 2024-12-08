@@ -44,7 +44,6 @@
             this.lblgender = new System.Windows.Forms.Label();
             this.txtpname = new System.Windows.Forms.TextBox();
             this.lblpname = new System.Windows.Forms.Label();
-            this.cbdiscount = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lblchange = new System.Windows.Forms.Label();
             this.txtamount = new System.Windows.Forms.TextBox();
@@ -52,6 +51,8 @@
             this.txttotal = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtdiscount = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAssignedPatients)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -93,6 +94,7 @@
             this.dgvAssignedPatients.Name = "dgvAssignedPatients";
             this.dgvAssignedPatients.Size = new System.Drawing.Size(841, 70);
             this.dgvAssignedPatients.TabIndex = 115;
+            this.dgvAssignedPatients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAssignedPatients_CellClick);
             // 
             // btnclear
             // 
@@ -131,9 +133,9 @@
             this.lblvisitdate.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.lblvisitdate.Location = new System.Drawing.Point(659, 31);
             this.lblvisitdate.Name = "lblvisitdate";
-            this.lblvisitdate.Size = new System.Drawing.Size(98, 21);
+            this.lblvisitdate.Size = new System.Drawing.Size(46, 21);
             this.lblvisitdate.TabIndex = 100;
-            this.lblvisitdate.Text = "DATE TODAY";
+            this.lblvisitdate.Text = "DATE";
             // 
             // label2
             // 
@@ -211,15 +213,6 @@
             this.lblpname.TabIndex = 4;
             this.lblpname.Text = "Patient Name";
             // 
-            // cbdiscount
-            // 
-            this.cbdiscount.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cbdiscount.FormattingEnabled = true;
-            this.cbdiscount.Location = new System.Drawing.Point(190, 112);
-            this.cbdiscount.Name = "cbdiscount";
-            this.cbdiscount.Size = new System.Drawing.Size(213, 29);
-            this.cbdiscount.TabIndex = 15;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -236,8 +229,9 @@
             this.lblchange.Font = new System.Drawing.Font("Segoe UI", 18F);
             this.lblchange.Location = new System.Drawing.Point(672, 356);
             this.lblchange.Name = "lblchange";
-            this.lblchange.Size = new System.Drawing.Size(0, 32);
+            this.lblchange.Size = new System.Drawing.Size(40, 32);
             this.lblchange.TabIndex = 13;
+            this.lblchange.Text = "Kk";
             // 
             // txtamount
             // 
@@ -269,7 +263,8 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.cbdiscount);
+            this.panel1.Controls.Add(this.txtdiscount);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.lblchange);
             this.panel1.Controls.Add(this.txtamount);
@@ -300,6 +295,24 @@
             this.panel3.Size = new System.Drawing.Size(1054, 105);
             this.panel3.TabIndex = 112;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.label4.Location = new System.Drawing.Point(565, 356);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(101, 32);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Change:";
+            // 
+            // txtdiscount
+            // 
+            this.txtdiscount.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtdiscount.Location = new System.Drawing.Point(190, 112);
+            this.txtdiscount.Name = "txtdiscount";
+            this.txtdiscount.Size = new System.Drawing.Size(213, 29);
+            this.txtdiscount.TabIndex = 17;
+            // 
             // TransacHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -314,6 +327,7 @@
             this.Controls.Add(this.panel3);
             this.Name = "TransacHistory";
             this.Size = new System.Drawing.Size(1174, 868);
+            this.Load += new System.EventHandler(this.TransacHistory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAssignedPatients)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -342,7 +356,6 @@
         private System.Windows.Forms.Label lblgender;
         private System.Windows.Forms.TextBox txtpname;
         private System.Windows.Forms.Label lblpname;
-        private System.Windows.Forms.ComboBox cbdiscount;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblchange;
         private System.Windows.Forms.TextBox txtamount;
@@ -350,5 +363,7 @@
         private System.Windows.Forms.TextBox txttotal;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox txtdiscount;
+        private System.Windows.Forms.Label label4;
     }
 }

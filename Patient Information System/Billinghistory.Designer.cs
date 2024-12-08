@@ -207,9 +207,9 @@
             this.lblvisitdate.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.lblvisitdate.Location = new System.Drawing.Point(659, 31);
             this.lblvisitdate.Name = "lblvisitdate";
-            this.lblvisitdate.Size = new System.Drawing.Size(98, 21);
+            this.lblvisitdate.Size = new System.Drawing.Size(46, 21);
             this.lblvisitdate.TabIndex = 100;
-            this.lblvisitdate.Text = "DATE TODAY";
+            this.lblvisitdate.Text = "DATE";
             // 
             // lblage
             // 
