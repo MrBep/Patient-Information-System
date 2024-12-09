@@ -119,6 +119,12 @@
     <Compile Include="Billinghistory.Designer.cs">
       <DependentUpon>Billinghistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="billingTransHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="billingTransHistory.Designer.cs">
+      <DependentUpon>billingTransHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="doctormedHistory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,9 @@
     <EmbeddedResource Include="Billinghistory.resx">
       <DependentUpon>Billinghistory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="billingTransHistory.resx">
+      <DependentUpon>billingTransHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="doctormedHistory.resx">
       <DependentUpon>doctormedHistory.cs</DependentUpon>
     </EmbeddedResource>
@@ -282,6 +291,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\roseeee.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Kwin_Creation_2__1_-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Kwin_Creation_2__1_-removebg-preview1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -504,17 +504,21 @@ namespace Patient_Information_System
 
                         cmd.ExecuteNonQuery();
                     }
-                    //saving the patient details for billing
+                    LoadAssignedPatients();
 
                     string deleteQuery = "DELETE FROM assigned_patient WHERE patient_id = @PatientId";
                     MySqlCommand deleteCmd = new MySqlCommand(deleteQuery, conn);
                     deleteCmd.Parameters.AddWithValue("@PatientId", selectedPatientId);
                     deleteCmd.ExecuteNonQuery();
-
-                    LoadAssignedPatients(); 
+ 
                     MessageBox.Show("Patient Medical Record Is Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
                     clearform();
                 }
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show($"Invalid data format: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -533,6 +537,8 @@ namespace Patient_Information_System
                 dtpfollow.Enabled = false; 
             }
         }
+
+
 
         private void btnmedhistory_Click(object sender, EventArgs e)
         {

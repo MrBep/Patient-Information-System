@@ -1,6 +1,6 @@
 ﻿namespace Patient_Information_System
 {
-    partial class frmbilling
+    partial class frmbillingTransHistory
     {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblexit = new System.Windows.Forms.Label();
             this.lblmin = new System.Windows.Forms.Label();
-            this.userBilling1 = new Patient_Information_System.userBilling();
+            this.transacHistory1 = new Patient_Information_System.TransacHistory();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +57,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(229, 921);
-            this.panel1.TabIndex = 2;
+            this.panel1.TabIndex = 3;
             // 
             // btnlogout
             // 
@@ -145,10 +145,10 @@
             this.lblexit.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblexit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.lblexit.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblexit.Location = new System.Drawing.Point(1337, 0);
+            this.lblexit.Location = new System.Drawing.Point(1339, 0);
             this.lblexit.Name = "lblexit";
             this.lblexit.Size = new System.Drawing.Size(60, 26);
-            this.lblexit.TabIndex = 9;
+            this.lblexit.TabIndex = 22;
             this.lblexit.Text = "X";
             this.lblexit.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblexit.Click += new System.EventHandler(this.lblexit_Click);
@@ -158,24 +158,23 @@
             this.lblmin.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblmin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.lblmin.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblmin.Location = new System.Drawing.Point(1271, 0);
+            this.lblmin.Location = new System.Drawing.Point(1273, 0);
             this.lblmin.Name = "lblmin";
             this.lblmin.Size = new System.Drawing.Size(60, 26);
-            this.lblmin.TabIndex = 10;
+            this.lblmin.TabIndex = 23;
             this.lblmin.Text = "---";
             this.lblmin.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblmin.Click += new System.EventHandler(this.lblmin_Click);
             // 
-            // userBilling1
+            // transacHistory1
             // 
-            this.userBilling1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(164)))), ((int)(((byte)(206)))));
-            this.userBilling1.Location = new System.Drawing.Point(232, 0);
-            this.userBilling1.Name = "userBilling1";
-            this.userBilling1.Size = new System.Drawing.Size(1165, 921);
-            this.userBilling1.TabIndex = 3;
-            this.userBilling1.Load += new System.EventHandler(this.userBilling1_Load);
+            this.transacHistory1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(164)))), ((int)(((byte)(206)))));
+            this.transacHistory1.Location = new System.Drawing.Point(232, 0);
+            this.transacHistory1.Name = "transacHistory1";
+            this.transacHistory1.Size = new System.Drawing.Size(1167, 921);
+            this.transacHistory1.TabIndex = 24;
             // 
-            // frmbilling
+            // frmbillingTransHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -184,11 +183,11 @@
             this.Controls.Add(this.lblmin);
             this.Controls.Add(this.lblexit);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.userBilling1);
+            this.Controls.Add(this.transacHistory1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmbilling";
+            this.Name = "frmbillingTransHistory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "billingForms";
+            this.Text = "billingTransHistory";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -206,9 +205,8 @@
         private System.Windows.Forms.Label lbldoctor;
         private System.Windows.Forms.Label lblhello;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private userBilling billinghistory1;
-        private userBilling userBilling1;
         private System.Windows.Forms.Label lblexit;
         private System.Windows.Forms.Label lblmin;
+        private TransacHistory transacHistory1;
     }
 }

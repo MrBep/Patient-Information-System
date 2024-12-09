@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace Patient_Information_System
 {
-    public partial class frmbilling : Form
+    public partial class frmbillingTransHistory : Form
     {
         private string lastName;
-        public frmbilling(string lastName)
+        public frmbillingTransHistory(string lastName)
         {
             InitializeComponent();
             this.lastName = lastName;
@@ -23,11 +23,6 @@ namespace Patient_Information_System
         private void lblmin_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void userBilling1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void lblexit_Click(object sender, EventArgs e)
@@ -54,15 +49,15 @@ namespace Patient_Information_System
             }
         }
 
-        private void btnbill_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         private void btnmedhistory_Click(object sender, EventArgs e)
         {
-            frmbillingTransHistory th = new frmbillingTransHistory(lastName);
-            th.Show();
+            
+        }
+
+        private void btnbill_Click(object sender, EventArgs e)
+        {
+            frmbilling bl = new frmbilling(lastName);
+            bl.Show();
             this.Hide();
         }
     }

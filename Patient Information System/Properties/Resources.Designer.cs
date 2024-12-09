@@ -83,6 +83,26 @@ namespace Patient_Information_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Kwin_Creation_2__1__removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("Kwin_Creation_2__1_-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Kwin_Creation_2__1__removebg_preview1 {
+            get {
+                object obj = ResourceManager.GetObject("Kwin_Creation_2__1_-removebg-preview1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Kwin_Creation_2_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("Kwin_Creation_2-removebg-preview", resourceCulture);

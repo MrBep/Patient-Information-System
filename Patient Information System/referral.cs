@@ -185,6 +185,7 @@ namespace Patient_Information_System
 
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
+
             Font titleFont = new Font("Arial", 18, FontStyle.Bold);
             Font subHeaderFont = new Font("Arial", 14, FontStyle.Bold);
             Font labelFont = new Font("Arial", 12, FontStyle.Bold);
@@ -195,37 +196,32 @@ namespace Patient_Information_System
             float pageWidth = e.MarginBounds.Width;
             float yPosition = topMargin;
 
-            
             Image logo = Image.FromFile("C:\\Users\\carlo\\Downloads\\Kwin_Creation_2__1_-removebg-preview.png");
 
-            
-            float logoWidth = 40;
-            float logoHeight = 40;
+            float logoWidth = 30;
+            float logoHeight = 30;
 
-            
             float totalWidth = logoWidth + 10 + e.Graphics.MeasureString("Serene Sky Horizon", titleFont).Width;
-            float logoX = (pageWidth - totalWidth) / 2;  
+            float logoX = (pageWidth - totalWidth) / 2;
 
-            
             e.Graphics.DrawImage(logo, logoX, yPosition, logoWidth, logoHeight);
+            e.Graphics.DrawString("SERENE SKY HORIZON", titleFont, Brushes.Black, logoX + logoWidth + 10, yPosition);
 
-          
-            e.Graphics.DrawString("Serene Sky Horizon", titleFont, Brushes.Black, logoX + logoWidth + 10, yPosition);
-
-            
             yPosition += logoHeight + 10;
 
-           
             string referralFormText = "Doctor Referral Form";
             float referralFormWidth = e.Graphics.MeasureString(referralFormText, titleFont).Width;
-            float referralFormX = (pageWidth - referralFormWidth) / 2; 
+            float referralFormX = (pageWidth - referralFormWidth) / 2;
             e.Graphics.DrawString(referralFormText, titleFont, Brushes.Black, referralFormX, yPosition);
 
-            yPosition += titleFont.GetHeight(e.Graphics) + 40; 
+            yPosition += titleFont.GetHeight(e.Graphics) + 40;
 
-            
             e.Graphics.DrawString($"Date: {DateTime.Now.ToShortDateString()}", textFont, Brushes.Black, leftMargin, yPosition);
             yPosition += 30;
+
+
+            e.Graphics.DrawLine(Pens.Black, leftMargin, yPosition, pageWidth - leftMargin, yPosition);
+            yPosition += 10;
 
             e.Graphics.DrawString("Patient Information", subHeaderFont, Brushes.Black, leftMargin, yPosition);
             yPosition += 40;
@@ -250,6 +246,10 @@ namespace Patient_Information_System
             e.Graphics.DrawString(dtpvisitdate.Value.ToShortDateString(), textFont, Brushes.Black, leftMargin + 150, yPosition);
             yPosition += 50;
 
+  
+            e.Graphics.DrawLine(Pens.Black, leftMargin, yPosition, pageWidth - leftMargin, yPosition);
+            yPosition += 10;
+
             e.Graphics.DrawString("Referral Details", subHeaderFont, Brushes.Black, leftMargin, yPosition);
             yPosition += 40;
 
@@ -260,6 +260,10 @@ namespace Patient_Information_System
             e.Graphics.DrawString("Specialization:", labelFont, Brushes.Black, leftMargin, yPosition);
             e.Graphics.DrawString(txtspecialization.Text, textFont, Brushes.Black, leftMargin + 150, yPosition);
             yPosition += 50;
+
+  
+            e.Graphics.DrawLine(Pens.Black, leftMargin, yPosition, pageWidth - leftMargin, yPosition);
+            yPosition += 10;
 
             e.Graphics.DrawString("Diagnosis Information", subHeaderFont, Brushes.Black, leftMargin, yPosition);
             yPosition += 40;
@@ -276,14 +280,14 @@ namespace Patient_Information_System
             e.Graphics.DrawString(txtreffered.Text, textFont, Brushes.Black, leftMargin + 170, yPosition);
             yPosition += 35;
 
-            e.Graphics.DrawLine(Pens.Black, leftMargin, yPosition, leftMargin + 700, yPosition);
+            
+            e.Graphics.DrawLine(Pens.Black, leftMargin, yPosition, pageWidth - leftMargin, yPosition);
             yPosition += 20;
 
             e.Graphics.DrawString("Note: This referral is strictly confidential and intended only for the use of the referred specialist.", textFont, Brushes.Black, leftMargin, yPosition);
             yPosition += 30;
 
             e.Graphics.DrawString("Thank you for your trust in our services.", textFont, Brushes.Black, leftMargin, yPosition);
-
 
         }
     }

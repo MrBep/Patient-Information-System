@@ -50,9 +50,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txttotal = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
             this.txtdiscount = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAssignedPatients)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -75,6 +76,7 @@
             this.txtsearch.Name = "txtsearch";
             this.txtsearch.Size = new System.Drawing.Size(213, 29);
             this.txtsearch.TabIndex = 118;
+            this.txtsearch.TextChanged += new System.EventHandler(this.txtsearch_TextChanged);
             // 
             // lblsearch
             // 
@@ -105,6 +107,7 @@
             this.btnclear.TabIndex = 119;
             this.btnclear.Text = "Clear";
             this.btnclear.UseVisualStyleBackColor = true;
+            this.btnclear.Click += new System.EventHandler(this.btnclear_Click);
             // 
             // txtage
             // 
@@ -227,11 +230,11 @@
             // 
             this.lblchange.AutoSize = true;
             this.lblchange.Font = new System.Drawing.Font("Segoe UI", 18F);
-            this.lblchange.Location = new System.Drawing.Point(672, 356);
+            this.lblchange.Location = new System.Drawing.Point(695, 356);
             this.lblchange.Name = "lblchange";
-            this.lblchange.Size = new System.Drawing.Size(40, 32);
+            this.lblchange.Size = new System.Drawing.Size(45, 32);
             this.lblchange.TabIndex = 13;
-            this.lblchange.Text = "Kk";
+            this.lblchange.Text = "0.0";
             // 
             // txtamount
             // 
@@ -263,6 +266,7 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.txtdiscount);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label6);
@@ -277,6 +281,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1054, 445);
             this.panel1.TabIndex = 113;
+            // 
+            // txtdiscount
+            // 
+            this.txtdiscount.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtdiscount.Location = new System.Drawing.Point(190, 112);
+            this.txtdiscount.Name = "txtdiscount";
+            this.txtdiscount.Size = new System.Drawing.Size(213, 29);
+            this.txtdiscount.TabIndex = 17;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.label4.Location = new System.Drawing.Point(565, 356);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(101, 32);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Change:";
             // 
             // panel3
             // 
@@ -295,23 +317,15 @@
             this.panel3.Size = new System.Drawing.Size(1054, 105);
             this.panel3.TabIndex = 112;
             // 
-            // label4
+            // label5
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 18F);
-            this.label4.Location = new System.Drawing.Point(565, 356);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(101, 32);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "Change:";
-            // 
-            // txtdiscount
-            // 
-            this.txtdiscount.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtdiscount.Location = new System.Drawing.Point(190, 112);
-            this.txtdiscount.Name = "txtdiscount";
-            this.txtdiscount.Size = new System.Drawing.Size(213, 29);
-            this.txtdiscount.TabIndex = 17;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.label5.Location = new System.Drawing.Point(672, 356);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(27, 32);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "P";
             // 
             // TransacHistory
             // 
@@ -365,5 +379,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtdiscount;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -88,6 +88,7 @@ namespace Patient_Information_System
                 }
                 catch (Exception ex)
                 {
+                    
                     MessageBox.Show("Error retrieving patient records: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -103,7 +104,7 @@ namespace Patient_Information_System
                 txtpname.Text = row.Cells["PatientName"].Value?.ToString() ?? string.Empty;
                 txtage.Text = row.Cells["Age"].Value?.ToString() ?? string.Empty;
                 txtgender.Text = row.Cells["Gender"].Value?.ToString() ?? string.Empty;
-                dtpvisitdate.Value = row.Cells["DateofVisit"].Value != null ? Convert.ToDateTime(row.Cells["DateofVisit"].Value) : DateTime.Now;
+                dtpvisitdate.Value = row.Cells["Date"].Value != null ? Convert.ToDateTime(row.Cells["Date"].Value) : DateTime.Now;
 
             }
         }
@@ -306,7 +307,7 @@ namespace Patient_Information_System
                                              .Replace("P", "")
                                              .Replace(":","")
                                              .Trim();
-                MessageBox.Show("Cleaned Change Amount Text: '" + changeAmountText + "'");
+               
 
 
                 if (!decimal.TryParse(changeAmountText, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal changeAmount))
@@ -349,20 +350,52 @@ namespace Patient_Information_System
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            float x = 50; 
-            float y = 20; 
-            float lineSpacing = 30; 
+            float x = 50;
+            float lineSpacing = 30;
 
            
-            e.Graphics.DrawString("SERENE SKY HORIZON HOSPITAL", new Font("Arial", 18, FontStyle.Bold), Brushes.Black, new PointF(x + 80, y));
-            y += lineSpacing;
-            e.Graphics.DrawString("Medical Billing Invoice", new Font("Arial", 14, FontStyle.Regular), Brushes.Black, new PointF(x + 120, y));
-            y += lineSpacing;
-            e.Graphics.DrawLine(Pens.Black, new PointF(x, y), new PointF(750, y)); 
-            y += 20;
+            float contentHeight = 0;
+            contentHeight += lineSpacing * 2; 
+            contentHeight += lineSpacing + 20; 
+            contentHeight += lineSpacing * 5; 
+            contentHeight += lineSpacing + 20; 
+            contentHeight += lineSpacing * 6; 
+            contentHeight += lineSpacing + 20; 
+            contentHeight += lineSpacing * 3; 
+            contentHeight += lineSpacing * 3; 
+
+            float pageHeight = e.PageBounds.Height;
+            float y = (pageHeight - contentHeight) / 2;
+
+
+            float pageWidth = e.PageBounds.Width;
 
             
-            e.Graphics.DrawString("Patient Information", new Font("Arial", 12, FontStyle.Bold), Brushes.Black, new PointF(x, y));
+            string hospitalName = "SERENE SKY HORIZON";
+            string billingTitle = "Medical Billing Invoice";
+            Font titleFont = new Font("Arial", 18, FontStyle.Bold);
+            Font subtitleFont = new Font("Arial", 14, FontStyle.Regular);
+
+            
+            SizeF hospitalNameSize = e.Graphics.MeasureString(hospitalName, titleFont);
+            SizeF billingTitleSize = e.Graphics.MeasureString(billingTitle, subtitleFont);
+
+            
+            float centeredHospitalNameX = (pageWidth - hospitalNameSize.Width) / 2;
+            float centeredBillingTitleX = (pageWidth - billingTitleSize.Width) / 2;
+
+          
+            e.Graphics.DrawString(hospitalName, titleFont, Brushes.Black, new PointF(centeredHospitalNameX, y));
+            y += lineSpacing;
+            e.Graphics.DrawString(billingTitle, subtitleFont, Brushes.Black, new PointF(centeredBillingTitleX, y));
+            y += lineSpacing;
+
+           
+            e.Graphics.DrawLine(Pens.Black, new PointF(x, y), new PointF(pageWidth - x, y));
+            y += 20;
+
+
+            e.Graphics.DrawString("PATIENT INFORMATION", new Font("Arial", 12, FontStyle.Bold), Brushes.Black, new PointF(x, y));
             y += lineSpacing;
             e.Graphics.DrawString($"Patient Name: {txtpname.Text}", new Font("Arial", 12), Brushes.Black, new PointF(x, y));
             y += lineSpacing;
@@ -376,7 +409,7 @@ namespace Patient_Information_System
             y += 20;
 
             
-            e.Graphics.DrawString("Billing Details", new Font("Arial", 12, FontStyle.Bold), Brushes.Black, new PointF(x, y));
+            e.Graphics.DrawString("BILLING DETAILS", new Font("Arial", 12, FontStyle.Bold), Brushes.Black, new PointF(x, y));
             y += lineSpacing;
             e.Graphics.DrawString($"Consultation Fee: P {txtconsultfee.Text}", new Font("Arial", 12), Brushes.Black, new PointF(x, y));
             y += lineSpacing;
@@ -386,20 +419,20 @@ namespace Patient_Information_System
             y += lineSpacing;
             e.Graphics.DrawString($"Amount Paid: P {txtamount.Text}", new Font("Arial", 12), Brushes.Black, new PointF(x, y));
             y += lineSpacing;
-            e.Graphics.DrawString($"{lblchange.Text}", new Font("Arial", 12), Brushes.Black, new PointF(x, y));
+            e.Graphics.DrawString($"CHANGE: {lblchange.Text}", new Font("Arial", 12), Brushes.Black, new PointF(x, y));
             y += lineSpacing;
-            e.Graphics.DrawLine(Pens.Black, new PointF(x, y), new PointF(750, y)); 
+            e.Graphics.DrawLine(Pens.Black, new PointF(x, y), new PointF(750, y));
             y += 20;
 
-
+            
             e.Graphics.DrawString("Thank you for trusting Serene Sky Horizon Hospital!", new Font("Arial", 10, FontStyle.Italic), Brushes.Black, new PointF(x, y));
             y += lineSpacing;
             e.Graphics.DrawString("We wish you good health!", new Font("Arial", 10, FontStyle.Italic), Brushes.Black, new PointF(x + 120, y));
             y += lineSpacing;
-
-           
-            e.Graphics.DrawLine(Pens.Black, new PointF(x, y), new PointF(750, y)); 
+            e.Graphics.DrawLine(Pens.Black, new PointF(x, y), new PointF(750, y));
             y += 20;
+
+            
             e.Graphics.DrawString("For inquiries, contact us:", new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new PointF(x, y));
             y += lineSpacing;
             e.Graphics.DrawString("Phone: (02) 1234-5678", new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new PointF(x, y));
@@ -407,7 +440,10 @@ namespace Patient_Information_System
             e.Graphics.DrawString("Email: info@sereneskyskyhorizon.com", new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new PointF(x, y));
         }
 
-        private void btnprint_Click(object sender, EventArgs e)
+
+    
+
+    private void btnprint_Click(object sender, EventArgs e)
         {
             PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog();
             printPreviewDialog.Document = printDocument1;

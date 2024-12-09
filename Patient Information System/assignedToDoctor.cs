@@ -217,11 +217,24 @@ namespace Patient_Information_System
         private void AssignPatientToDoctors(int patientId, DateTime assignedTime, string concern, decimal temp, decimal? height, decimal? weight, string bp)
         {
             string query = @"
-                INSERT INTO assigned_patient (patient_id, doctor_id, concern, blood_pressure, temperature, height, weight, assigned_time, status)
-                SELECT @PatientId,d.doctor_id, @Concern, @BloodPressure, @Temperature, @Height, @Weight, @AssignedTime, 'pending'
-                FROM doctor d
-                WHERE @AssignedTime BETWEEN d.available_from AND d.available_to;
-            ";
+        INSERT INTO assigned_patient (patient_id, doctor_id, concern, blood_pressure, temperature, height, weight, assigned_time, status)
+        SELECT @PatientId, d.doctor_id, @Concern, @BloodPressure, @Temperature, @Height, @Weight, @AssignedTime, 'pending'
+        FROM doctor d
+        WHERE (
+                -- For doctors with available time from available_from to available_to (normal shifts)
+                (@AssignedTime >= d.available_from AND @AssignedTime < d.available_to)
+                OR
+                -- For doctors with available time spanning past midnight (11 PM to 8 AM, for example)
+                (d.available_from > d.available_to AND 
+                    (
+                        @AssignedTime >= d.available_from OR @AssignedTime < d.available_to
+                    )
+                )
+                OR
+                -- For adjacent shifts, where one shift ends exactly when the next begins
+                (d.available_from = d.available_to AND @AssignedTime >= d.available_from AND @AssignedTime < d.available_to)
+            );
+    ";
 
             try
             {
@@ -233,12 +246,12 @@ namespace Patient_Information_System
                     cmd.Parameters.AddWithValue("@Concern", concern);
                     cmd.Parameters.AddWithValue("@BloodPressure", bp);
                     cmd.Parameters.AddWithValue("@Temperature", temp);
-                    cmd.Parameters.AddWithValue("@Height", (object)height ?? DBNull.Value);  
+                    cmd.Parameters.AddWithValue("@Height", (object)height ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@Weight", (object)weight ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@AssignedTime", assignedTime); 
+                    cmd.Parameters.AddWithValue("@AssignedTime", assignedTime);
                     cmd.ExecuteNonQuery();
 
-                    MessageBox.Show("Patient successfully assigned to all available doctors.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Patient successfully assigned to available doctors.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -246,6 +259,7 @@ namespace Patient_Information_System
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void btnassignTOdr_Click(object sender, EventArgs e)
         {

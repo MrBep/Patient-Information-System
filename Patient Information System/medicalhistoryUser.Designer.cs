@@ -516,7 +516,6 @@
             this.dgvAssignedPatients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAssignedPatients.Location = new System.Drawing.Point(52, 101);
             this.dgvAssignedPatients.Name = "dgvAssignedPatients";
-            this.dgvAssignedPatients.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvAssignedPatients.Size = new System.Drawing.Size(1054, 70);
             this.dgvAssignedPatients.TabIndex = 77;
             this.dgvAssignedPatients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAssignedPatients_CellClick);

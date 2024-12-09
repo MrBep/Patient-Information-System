@@ -45,11 +45,18 @@ namespace Patient_Information_System
 
         private void LoadAllBillingRecords()
         {
+            if (dgvAssignedPatients == null)
+            {
+                MessageBox.Show("DataGridView is not initialized.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             using (var conn = new database().GetConnection())
             {
                 try
                 {
                     conn.Open();
+
                     string query = @"
                 SELECT 
                     billing_id, 
@@ -89,19 +96,24 @@ namespace Patient_Information_System
                             billingList.Add(billing);
                         }
 
-                       
+                        if (billingList == null || billingList.Count == 0)
+                        {
+                            MessageBox.Show("No billing records found.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            dgvAssignedPatients.DataSource = null;
+                            return;
+                        }
+
                         dgvAssignedPatients.DataSource = new BindingList<billingInfo>(billingList);
-
-
                     }
                 }
                 catch (Exception ex)
                 {
-                     
+                    dgvAssignedPatients.DataSource = null;
                     MessageBox.Show("Error retrieving patient transaction history: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
+
 
 
         private void dgvAssignedPatients_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -128,6 +140,73 @@ namespace Patient_Information_System
         {
             LoadAllBillingRecords();
         
+        }
+
+        public void RefreshData()
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker)RefreshData);
+                return;
+            }
+
+            LoadAllBillingRecords();
+        }
+
+        private void txtsearch_TextChanged(object sender, EventArgs e)
+        {
+            string searchKeyword = txtsearch.Text.Trim();
+
+            using (var conn = new database().GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+
+
+                    string query = @"
+                SELECT 
+                    billing_id, 
+                    patient_name, 
+                    age, 
+                    gender,
+                    consultation_fee,
+                    discount,
+                    total_bill,
+                    amount_paid,
+                    change_amount,
+                    date_created
+                FROM billing_details
+                WHERE DATE(date) = CURDATE()
+                  AND (patient_name LIKE @SearchTerm 
+                  OR patient_id LIKE @SearchTerm)";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@SearchTerm", "%" + searchKeyword + "%");
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dgvAssignedPatients.DataSource = dt;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error searching patient transaction record: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnclear_Click(object sender, EventArgs e)
+        {
+            txtpname.Text = string.Empty;
+            txtage.Text = string.Empty;
+            txtgender.Text = string.Empty;
+            txtconsultfee.Text = string.Empty;
+            txtdiscount.Text=string.Empty;
+            txttotal.Text = string.Empty;
+            txtamount.Text = string.Empty;
+            lblchange.Text = "0.0";
         }
     }
 }
