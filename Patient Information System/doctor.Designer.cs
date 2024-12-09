@@ -39,8 +39,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.dtpfollow = new System.Windows.Forms.DateTimePicker();
-            this.cbfollow = new System.Windows.Forms.CheckBox();
             this.txtprescriptions = new System.Windows.Forms.TextBox();
             this.lblprescription = new System.Windows.Forms.Label();
             this.txtdiagnosis = new System.Windows.Forms.TextBox();
@@ -122,7 +120,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(229, 921);
+            this.panel1.Size = new System.Drawing.Size(229, 935);
             this.panel1.TabIndex = 1;
             // 
             // btnlogout
@@ -223,8 +221,6 @@
             // 
             this.panel2.AutoScroll = true;
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.dtpfollow);
-            this.panel2.Controls.Add(this.cbfollow);
             this.panel2.Controls.Add(this.txtprescriptions);
             this.panel2.Controls.Add(this.lblprescription);
             this.panel2.Controls.Add(this.txtdiagnosis);
@@ -261,26 +257,6 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(0, 21);
             this.label5.TabIndex = 77;
-            // 
-            // dtpfollow
-            // 
-            this.dtpfollow.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.dtpfollow.Location = new System.Drawing.Point(228, 962);
-            this.dtpfollow.Name = "dtpfollow";
-            this.dtpfollow.Size = new System.Drawing.Size(277, 29);
-            this.dtpfollow.TabIndex = 76;
-            // 
-            // cbfollow
-            // 
-            this.cbfollow.AutoSize = true;
-            this.cbfollow.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cbfollow.Location = new System.Drawing.Point(33, 962);
-            this.cbfollow.Name = "cbfollow";
-            this.cbfollow.Size = new System.Drawing.Size(193, 25);
-            this.cbfollow.TabIndex = 75;
-            this.cbfollow.Text = "FOLLOW-UP CHECK UP";
-            this.cbfollow.UseVisualStyleBackColor = true;
-            this.cbfollow.CheckedChanged += new System.EventHandler(this.cbfollow_CheckedChanged);
             // 
             // txtprescriptions
             // 
@@ -832,7 +808,7 @@
             this.lblmin.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblmin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.lblmin.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblmin.Location = new System.Drawing.Point(1272, 0);
+            this.lblmin.Location = new System.Drawing.Point(1307, 0);
             this.lblmin.Name = "lblmin";
             this.lblmin.Size = new System.Drawing.Size(60, 26);
             this.lblmin.TabIndex = 22;
@@ -845,7 +821,7 @@
             this.lblexit.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblexit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.lblexit.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblexit.Location = new System.Drawing.Point(1338, 0);
+            this.lblexit.Location = new System.Drawing.Point(1373, 0);
             this.lblexit.Name = "lblexit";
             this.lblexit.Size = new System.Drawing.Size(60, 26);
             this.lblexit.TabIndex = 76;
@@ -860,7 +836,7 @@
             this.AutoScroll = true;
             this.AutoScrollMinSize = new System.Drawing.Size(2, 2);
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(164)))), ((int)(((byte)(206)))));
-            this.ClientSize = new System.Drawing.Size(1398, 921);
+            this.ClientSize = new System.Drawing.Size(1434, 935);
             this.Controls.Add(this.lblexit);
             this.Controls.Add(this.lblmin);
             this.Controls.Add(this.label4);
@@ -964,8 +940,6 @@
         private System.Windows.Forms.TextBox txtsymptoms;
         private System.Windows.Forms.Label lblsymptoms;
         private System.Windows.Forms.Button btnsave;
-        private System.Windows.Forms.CheckBox cbfollow;
-        private System.Windows.Forms.DateTimePicker dtpfollow;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblmin;

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnprevious = new System.Windows.Forms.Button();
             this.columnlastname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtgender = new System.Windows.Forms.TextBox();
             this.lblgender = new System.Windows.Forms.Label();
@@ -39,7 +38,6 @@
             this.columnbirthdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columncpnum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columngender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnnext = new System.Windows.Forms.Button();
             this.btnassignTOdr = new System.Windows.Forms.Button();
             this.txtconcern = new System.Windows.Forms.TextBox();
             this.txtcpnum = new System.Windows.Forms.TextBox();
@@ -71,17 +69,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgwlistpatient)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnprevious
-            // 
-            this.btnprevious.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnprevious.Location = new System.Drawing.Point(838, 56);
-            this.btnprevious.Name = "btnprevious";
-            this.btnprevious.Size = new System.Drawing.Size(110, 37);
-            this.btnprevious.TabIndex = 61;
-            this.btnprevious.Text = "Previous";
-            this.btnprevious.UseVisualStyleBackColor = true;
-            this.btnprevious.Click += new System.EventHandler(this.btnprevious_Click);
             // 
             // columnlastname
             // 
@@ -161,17 +148,6 @@
             this.columngender.HeaderText = "Gender";
             this.columngender.Name = "columngender";
             this.columngender.Width = 145;
-            // 
-            // btnnext
-            // 
-            this.btnnext.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnnext.Location = new System.Drawing.Point(954, 56);
-            this.btnnext.Name = "btnnext";
-            this.btnnext.Size = new System.Drawing.Size(110, 37);
-            this.btnnext.TabIndex = 60;
-            this.btnnext.Text = "Next";
-            this.btnnext.UseVisualStyleBackColor = true;
-            this.btnnext.Click += new System.EventHandler(this.btnnext_Click);
             // 
             // btnassignTOdr
             // 
@@ -470,9 +446,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(164)))), ((int)(((byte)(206)))));
-            this.Controls.Add(this.btnprevious);
             this.Controls.Add(this.dtgwlistpatient);
-            this.Controls.Add(this.btnnext);
             this.Controls.Add(this.txtsearch);
             this.Controls.Add(this.lblsearch);
             this.Controls.Add(this.panel1);
@@ -490,8 +464,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnprevious;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnlastname;
         private System.Windows.Forms.TextBox txtgender;
         private System.Windows.Forms.Label lblgender;
@@ -502,7 +474,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn columnbirthdate;
         private System.Windows.Forms.DataGridViewTextBoxColumn columncpnum;
         private System.Windows.Forms.DataGridViewTextBoxColumn columngender;
-        private System.Windows.Forms.Button btnnext;
         private System.Windows.Forms.Button btnassignTOdr;
         private System.Windows.Forms.TextBox txtconcern;
         private System.Windows.Forms.TextBox txtcpnum;

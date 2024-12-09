@@ -27,7 +27,8 @@ namespace Patient_Information_System
             lblname.Text = lastName;
 
             LoadAssignedPatients();
-            dgvAssignedPatients.Refresh();
+           
+          
         }
         public class database
         {
@@ -275,6 +276,7 @@ namespace Patient_Information_System
             {
                 LoadPatientDetails(patientId);
                 LoadAssignedPatients();
+               
             }
 
         }
@@ -526,17 +528,7 @@ namespace Patient_Information_System
             }
         }
 
-        private void cbfollow_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbfollow.Checked)
-            {
-                dtpfollow.Enabled = true; 
-            }
-            else
-            {
-                dtpfollow.Enabled = false; 
-            }
-        }
+
 
 
 

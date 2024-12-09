@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.btndelete = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnedit = new System.Windows.Forms.Button();
@@ -60,9 +61,6 @@
             this.columncpnum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columngender = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnaddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnprevious = new System.Windows.Forms.Button();
-            this.btnnext = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.gbgender.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgwlistpatient)).BeginInit();
@@ -92,6 +90,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1054, 526);
             this.panel1.TabIndex = 31;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 21);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "ADD PATIENT";
             // 
             // btndelete
             // 
@@ -379,45 +387,11 @@
             this.columnaddress.Name = "columnaddress";
             this.columnaddress.Width = 134;
             // 
-            // btnprevious
-            // 
-            this.btnprevious.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnprevious.Location = new System.Drawing.Point(838, 58);
-            this.btnprevious.Name = "btnprevious";
-            this.btnprevious.Size = new System.Drawing.Size(110, 37);
-            this.btnprevious.TabIndex = 33;
-            this.btnprevious.Text = "Previous";
-            this.btnprevious.UseVisualStyleBackColor = true;
-            this.btnprevious.Click += new System.EventHandler(this.btnprevious_Click);
-            // 
-            // btnnext
-            // 
-            this.btnnext.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnnext.Location = new System.Drawing.Point(954, 58);
-            this.btnnext.Name = "btnnext";
-            this.btnnext.Size = new System.Drawing.Size(110, 37);
-            this.btnnext.TabIndex = 32;
-            this.btnnext.Text = "Next";
-            this.btnnext.UseVisualStyleBackColor = true;
-            this.btnnext.Click += new System.EventHandler(this.btnnext_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 21);
-            this.label1.TabIndex = 34;
-            this.label1.Text = "ADD PATIENT";
-            // 
             // patientUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(164)))), ((int)(((byte)(206)))));
-            this.Controls.Add(this.btnprevious);
-            this.Controls.Add(this.btnnext);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtsearch);
             this.Controls.Add(this.lblsearch);
@@ -461,8 +435,6 @@
         private System.Windows.Forms.Label lbllist;
         private System.Windows.Forms.DataGridView dtgwlistpatient;
         private System.Windows.Forms.Button btndelete;
-        private System.Windows.Forms.Button btnprevious;
-        private System.Windows.Forms.Button btnnext;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnpatientid;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnlastname;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnfirstname;

@@ -221,17 +221,17 @@ namespace Patient_Information_System
         SELECT @PatientId, d.doctor_id, @Concern, @BloodPressure, @Temperature, @Height, @Weight, @AssignedTime, 'pending'
         FROM doctor d
         WHERE (
-                -- For doctors with available time from available_from to available_to (normal shifts)
+               
                 (@AssignedTime >= d.available_from AND @AssignedTime < d.available_to)
                 OR
-                -- For doctors with available time spanning past midnight (11 PM to 8 AM, for example)
+               
                 (d.available_from > d.available_to AND 
                     (
                         @AssignedTime >= d.available_from OR @AssignedTime < d.available_to
                     )
                 )
                 OR
-                -- For adjacent shifts, where one shift ends exactly when the next begins
+              
                 (d.available_from = d.available_to AND @AssignedTime >= d.available_from AND @AssignedTime < d.available_to)
             );
     ";

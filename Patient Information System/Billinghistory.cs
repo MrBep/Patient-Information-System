@@ -113,8 +113,8 @@ namespace Patient_Information_System
         private void Billinghistory_Load(object sender, EventArgs e)
         {
             cbdiscount.Items.Add("None");
-            cbdiscount.Items.Add("Senior Citizen - 20%");
-            cbdiscount.Items.Add("PWD - 20%");
+            cbdiscount.Items.Add("Senior Citizen");
+            cbdiscount.Items.Add("PWD");
             cbdiscount.SelectedIndex = 0;
 
            
@@ -191,12 +191,12 @@ namespace Patient_Information_System
 
         private void CalculateTotalBill()
         {
-            
+            //numerical
             if (decimal.TryParse(txtconsultfee.Text, out decimal consultationFee))
             {
                 decimal discount = 0;
 
-                
+                //branching
                 switch (cbdiscount.SelectedItem?.ToString())
                 {
                     case "Senior Citizen - 20%":
@@ -220,11 +220,11 @@ namespace Patient_Information_System
 
         private void CalculateChange()
         {
-            
+            //numerical 
             if (decimal.TryParse(txttotal.Text, out decimal totalBill) &&
                 decimal.TryParse(txtamount.Text, out decimal amountPaid))
             {
-                
+                //branching
                 if (amountPaid >= totalBill)
                 {
                     decimal change = amountPaid - totalBill;

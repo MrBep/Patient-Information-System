@@ -30,16 +30,15 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnlogout = new System.Windows.Forms.Button();
-            this.btnfollowup = new System.Windows.Forms.Button();
             this.btnassign = new System.Windows.Forms.Button();
             this.btnpatient = new System.Windows.Forms.Button();
             this.lblname = new System.Windows.Forms.Label();
             this.lblreceptionist = new System.Windows.Forms.Label();
             this.lblhello = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.patientUser1 = new Patient_Information_System.patientUser();
             this.lblexit = new System.Windows.Forms.Label();
             this.lblmin = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.patientUser1 = new Patient_Information_System.patientUser();
             this.assignedToDoctor1 = new Patient_Information_System.assignedToDoctor();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -49,7 +48,6 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Controls.Add(this.btnlogout);
-            this.panel1.Controls.Add(this.btnfollowup);
             this.panel1.Controls.Add(this.btnassign);
             this.panel1.Controls.Add(this.btnpatient);
             this.panel1.Controls.Add(this.lblname);
@@ -75,24 +73,12 @@
             this.btnlogout.UseVisualStyleBackColor = true;
             this.btnlogout.Click += new System.EventHandler(this.btnlogout_Click);
             // 
-            // btnfollowup
-            // 
-            this.btnfollowup.FlatAppearance.BorderSize = 0;
-            this.btnfollowup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnfollowup.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnfollowup.Location = new System.Drawing.Point(3, 516);
-            this.btnfollowup.Name = "btnfollowup";
-            this.btnfollowup.Size = new System.Drawing.Size(223, 57);
-            this.btnfollowup.TabIndex = 20;
-            this.btnfollowup.Text = "TO FOLLOW-UP";
-            this.btnfollowup.UseVisualStyleBackColor = true;
-            // 
             // btnassign
             // 
             this.btnassign.FlatAppearance.BorderSize = 0;
             this.btnassign.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnassign.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnassign.Location = new System.Drawing.Point(3, 413);
+            this.btnassign.Location = new System.Drawing.Point(3, 452);
             this.btnassign.Name = "btnassign";
             this.btnassign.Size = new System.Drawing.Size(223, 57);
             this.btnassign.TabIndex = 19;
@@ -105,7 +91,7 @@
             this.btnpatient.FlatAppearance.BorderSize = 0;
             this.btnpatient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnpatient.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnpatient.Location = new System.Drawing.Point(3, 322);
+            this.btnpatient.Location = new System.Drawing.Point(3, 361);
             this.btnpatient.Name = "btnpatient";
             this.btnpatient.Size = new System.Drawing.Size(223, 57);
             this.btnpatient.TabIndex = 18;
@@ -143,26 +129,6 @@
             this.lblhello.TabIndex = 1;
             this.lblhello.Text = "Hello!";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::Patient_Information_System.Properties.Resources.cherryblossom;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 108);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(72, 50);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // patientUser1
-            // 
-            this.patientUser1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(164)))), ((int)(((byte)(206)))));
-            this.patientUser1.Location = new System.Drawing.Point(232, 3);
-            this.patientUser1.Name = "patientUser1";
-            this.patientUser1.Size = new System.Drawing.Size(1151, 882);
-            this.patientUser1.TabIndex = 2;
-            // 
             // lblexit
             // 
             this.lblexit.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -188,6 +154,26 @@
             this.lblmin.Text = "---";
             this.lblmin.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblmin.Click += new System.EventHandler(this.lblmin_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::Patient_Information_System.Properties.Resources.cherryblossom;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 108);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(72, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // patientUser1
+            // 
+            this.patientUser1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(164)))), ((int)(((byte)(206)))));
+            this.patientUser1.Location = new System.Drawing.Point(232, 3);
+            this.patientUser1.Name = "patientUser1";
+            this.patientUser1.Size = new System.Drawing.Size(1151, 882);
+            this.patientUser1.TabIndex = 2;
             // 
             // assignedToDoctor1
             // 
@@ -224,7 +210,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnlogout;
-        private System.Windows.Forms.Button btnfollowup;
         private System.Windows.Forms.Button btnassign;
         private System.Windows.Forms.Button btnpatient;
         private System.Windows.Forms.Label lblname;
