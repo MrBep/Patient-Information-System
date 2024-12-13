@@ -84,7 +84,7 @@ namespace Patient_Information_System
                 }
             }
 
-            public List<Staff> Getallstaff()
+            public List<Staff> Getallstaff()//kinukuha lahat ng information ng staff sa database
             {
                 List<Staff> stafflist = new List<Staff>();
                 using (var conn = data.GetConnection())
