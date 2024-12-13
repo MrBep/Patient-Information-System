@@ -86,7 +86,7 @@ namespace Patient_Information_System
 
             public List<Staff> Getallstaff()
             {
-                List<Staff> stafflist = new List<Staff>();
+                List<Staff> stafflist = new List<Staff>();//Kinukuha ang list ng staff sa database para ma display sa datagrid view
                 using (var conn = data.GetConnection())
                 {
                     conn.Open();
