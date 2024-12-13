@@ -37,9 +37,11 @@
             this.lblhello = new System.Windows.Forms.Label();
             this.lblexit = new System.Windows.Forms.Label();
             this.lblmin = new System.Windows.Forms.Label();
+            this.btnlistofpatienttobefollowup = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.patientUser1 = new Patient_Information_System.patientUser();
             this.assignedToDoctor1 = new Patient_Information_System.assignedToDoctor();
+            this.listFollow1 = new Patient_Information_System.listFollow();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -47,6 +49,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.btnlistofpatienttobefollowup);
             this.panel1.Controls.Add(this.btnlogout);
             this.panel1.Controls.Add(this.btnassign);
             this.panel1.Controls.Add(this.btnpatient);
@@ -78,7 +81,7 @@
             this.btnassign.FlatAppearance.BorderSize = 0;
             this.btnassign.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnassign.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnassign.Location = new System.Drawing.Point(3, 452);
+            this.btnassign.Location = new System.Drawing.Point(3, 437);
             this.btnassign.Name = "btnassign";
             this.btnassign.Size = new System.Drawing.Size(223, 57);
             this.btnassign.TabIndex = 19;
@@ -91,7 +94,7 @@
             this.btnpatient.FlatAppearance.BorderSize = 0;
             this.btnpatient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnpatient.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnpatient.Location = new System.Drawing.Point(3, 361);
+            this.btnpatient.Location = new System.Drawing.Point(3, 346);
             this.btnpatient.Name = "btnpatient";
             this.btnpatient.Size = new System.Drawing.Size(223, 57);
             this.btnpatient.TabIndex = 18;
@@ -155,6 +158,19 @@
             this.lblmin.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblmin.Click += new System.EventHandler(this.lblmin_Click);
             // 
+            // btnlistofpatienttobefollowup
+            // 
+            this.btnlistofpatienttobefollowup.FlatAppearance.BorderSize = 0;
+            this.btnlistofpatienttobefollowup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnlistofpatienttobefollowup.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btnlistofpatienttobefollowup.Location = new System.Drawing.Point(3, 528);
+            this.btnlistofpatienttobefollowup.Name = "btnlistofpatienttobefollowup";
+            this.btnlistofpatienttobefollowup.Size = new System.Drawing.Size(223, 57);
+            this.btnlistofpatienttobefollowup.TabIndex = 22;
+            this.btnlistofpatienttobefollowup.Text = "FOLLOW-UP PATIENT LIST";
+            this.btnlistofpatienttobefollowup.UseVisualStyleBackColor = true;
+            this.btnlistofpatienttobefollowup.Click += new System.EventHandler(this.btnlistofpatienttobefollowup_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::Patient_Information_System.Properties.Resources.cherryblossom;
@@ -184,6 +200,14 @@
             this.assignedToDoctor1.Size = new System.Drawing.Size(1151, 882);
             this.assignedToDoctor1.TabIndex = 6;
             // 
+            // listFollow1
+            // 
+            this.listFollow1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(164)))), ((int)(((byte)(206)))));
+            this.listFollow1.Location = new System.Drawing.Point(232, 0);
+            this.listFollow1.Name = "listFollow1";
+            this.listFollow1.Size = new System.Drawing.Size(1151, 882);
+            this.listFollow1.TabIndex = 7;
+            // 
             // frmreceptionist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -195,6 +219,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.patientUser1);
             this.Controls.Add(this.assignedToDoctor1);
+            this.Controls.Add(this.listFollow1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmreceptionist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -220,5 +245,7 @@
         private System.Windows.Forms.Label lblexit;
         private System.Windows.Forms.Label lblmin;
         private assignedToDoctor assignedToDoctor1;
+        private System.Windows.Forms.Button btnlistofpatienttobefollowup;
+        private listFollow listFollow1;
     }
 }

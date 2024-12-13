@@ -38,6 +38,8 @@
             this.lblhello = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dtpdateoffollow = new System.Windows.Forms.DateTimePicker();
+            this.cbfollowup = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtprescriptions = new System.Windows.Forms.TextBox();
             this.lblprescription = new System.Windows.Forms.Label();
@@ -220,6 +222,8 @@
             // panel2
             // 
             this.panel2.AutoScroll = true;
+            this.panel2.Controls.Add(this.dtpdateoffollow);
+            this.panel2.Controls.Add(this.cbfollowup);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.txtprescriptions);
             this.panel2.Controls.Add(this.lblprescription);
@@ -249,11 +253,32 @@
             this.panel2.Size = new System.Drawing.Size(1089, 598);
             this.panel2.TabIndex = 73;
             // 
+            // dtpdateoffollow
+            // 
+            this.dtpdateoffollow.CalendarFont = new System.Drawing.Font("Segoe UI", 12F);
+            this.dtpdateoffollow.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dtpdateoffollow.Location = new System.Drawing.Point(248, 1009);
+            this.dtpdateoffollow.Name = "dtpdateoffollow";
+            this.dtpdateoffollow.Size = new System.Drawing.Size(257, 29);
+            this.dtpdateoffollow.TabIndex = 79;
+            // 
+            // cbfollowup
+            // 
+            this.cbfollowup.AutoSize = true;
+            this.cbfollowup.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbfollowup.Location = new System.Drawing.Point(37, 1008);
+            this.cbfollowup.Name = "cbfollowup";
+            this.cbfollowup.Size = new System.Drawing.Size(191, 25);
+            this.cbfollowup.TabIndex = 78;
+            this.cbfollowup.Text = "FOLLOW UP CHECK UP";
+            this.cbfollowup.UseVisualStyleBackColor = true;
+            this.cbfollowup.CheckedChanged += new System.EventHandler(this.cbfollowup_CheckedChanged);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.label5.Location = new System.Drawing.Point(511, 994);
+            this.label5.Location = new System.Drawing.Point(511, 1099);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(0, 21);
             this.label5.TabIndex = 77;
@@ -652,7 +677,7 @@
             this.dgvAssignedPatients.Location = new System.Drawing.Point(281, 58);
             this.dgvAssignedPatients.Name = "dgvAssignedPatients";
             this.dgvAssignedPatients.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvAssignedPatients.Size = new System.Drawing.Size(1054, 57);
+            this.dgvAssignedPatients.Size = new System.Drawing.Size(1028, 57);
             this.dgvAssignedPatients.TabIndex = 68;
             this.dgvAssignedPatients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAssignedPatients_CellClick);
             // 
@@ -944,5 +969,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblmin;
         private System.Windows.Forms.Label lblexit;
+        private System.Windows.Forms.CheckBox cbfollowup;
+        private System.Windows.Forms.DateTimePicker dtpdateoffollow;
     }
 }

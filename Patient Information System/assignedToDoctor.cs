@@ -48,28 +48,18 @@ namespace Patient_Information_System
             public string cellphonenumber { get; set; }
         }
 
-        public class ComboboxItem
-        {
-            public string Text { get; set; }
-            public object Value { get; set; }
-
-            public override string ToString()
-            {
-                return Text;
-            }
-        }
-
-
 
         public class assignDoctor
         {
             private database data = new database();
+            //cache para sa mga na-search na patient.
             private Dictionary<string, List<patient>> searchCache = new Dictionary<string, List<patient>>();
+            //cache para sa mga patient na nakuha sa database, naka index sila by pateintID.
             private Dictionary<int, patient> patientCache = new Dictionary<int, patient>();
 
 
 
-            public List<patient> getllallPatient()
+            public List<patient> getllallPatient()//Kumukuha ng lahat ng patient na galing sa database
             {
                 List<patient> patientList = new List<patient>();
                 using (var conn = data.GetConnection())
@@ -94,7 +84,7 @@ namespace Patient_Information_System
                                 cellphonenumber = reader.GetString("cellphone_number")
                             };
                             patientList.Add(Patient);
-                            patientCache[Patient.patientID] = Patient;
+                            patientCache[Patient.patientID] = Patient;// I-cache ang patient ayon sa ID.
                         }
                     }
                 }
@@ -102,20 +92,20 @@ namespace Patient_Information_System
             }//end of getallPatient
 
 
-            public patient getPatientbyID(int patientID)
+            public patient getPatientbyID(int patientID)//paraan upang kunin ang isang patient ayon sa kanilang ID.
             {
-                if (patientCache.ContainsKey(patientID))
+                if (patientCache.ContainsKey(patientID))// I-checheck kung ang patient ay nasa cache.
                 {
-                    return patientCache[patientID];
+                    return patientCache[patientID];// tas ibabalik ang patient mula sa cache.
                 }
-                return null;
+                return null;// Ibabalik ang null kung hindi nahanap ang patient sa cache.
             }//end of getPatientbyID
 
-            public List<patient> searchPatient(string searchTerm)
+            public List<patient> searchPatient(string searchTerm)///paraan upang maghanap ng mga patient gamit ang kanilang unang pangalan o apelyido.
             {
-                if (searchCache.ContainsKey(searchTerm))
+                if (searchCache.ContainsKey(searchTerm))// I - checheck kung ang search term ay nasa cache
                 {
-                    return searchCache[searchTerm];
+                    return searchCache[searchTerm];// Ibabalik ng search ang nakuhang resulta galing sa cached.
                 }
 
                 List<patient> patientList = new List<patient>();
@@ -144,7 +134,7 @@ namespace Patient_Information_System
                         }
                     }
                 }
-                searchCache[searchTerm] = patientList;
+                searchCache[searchTerm] = patientList;// Icacahe ang mga resulta ng search para sa susunod na paggamit.
 
                 return patientList;
             }// end of search
@@ -154,9 +144,9 @@ namespace Patient_Information_System
 
         }//end of assignDoctor
 
-        private int currentPage = 1;
-        private int itemsPerPage = 10;
-        private List<patient> allPatient = new List<patient>();
+        private int currentPage = 1;//Kasalukuyang pahina sa listahan ng mga patient.
+        private int itemsPerPage = 10;//Bilang ng mga patient na ipapakita sa bawat pahina.
+        private List<patient> allPatient = new List<patient>();//Listahan ng lahat ng patient na galing sa database.
         patientData patientAccess = new patientData();
         private int selectedPatient = -1;
         private database data = new database();
@@ -174,13 +164,14 @@ namespace Patient_Information_System
                 return;
             }
 
+            //Pag-compute ng kabuuang bilang ng mga pahina base sa bilang ng mga patient sa database
             int totalPages = (int)Math.Ceiling(allPatient.Count / (double)itemsPerPage);
 
 
             if (currentPage < 1) currentPage = 1;
             if (currentPage > totalPages) currentPage = totalPages;
 
-
+            //Paghahati sa listahan ng mga patient batay sa kasalukuyang pahina at ang bilang ng dapat na nakalagay sa bawat pahina
             List<patient> pagedPatient = allPatient
                 .Skip((currentPage - 1) * itemsPerPage)
                 .Take(itemsPerPage)

@@ -83,7 +83,7 @@ namespace Patient_Information_System
                         dgvAssignedPatients.Columns["PatientName"].Width = 160;
                         dgvAssignedPatients.Columns["Age"].Width = 160;
                         dgvAssignedPatients.Columns["Gender"].Width = 160;
-                        dgvAssignedPatients.Columns["Date"].Width = 158;
+                        dgvAssignedPatients.Columns["Date"].Width = 160;
                     }
                 }
                 catch (Exception ex)
@@ -113,8 +113,8 @@ namespace Patient_Information_System
         private void Billinghistory_Load(object sender, EventArgs e)
         {
             cbdiscount.Items.Add("None");
-            cbdiscount.Items.Add("Senior Citizen");
-            cbdiscount.Items.Add("PWD");
+            cbdiscount.Items.Add("Senior Citizen - 20%");
+            cbdiscount.Items.Add("PWD - 20%");
             cbdiscount.SelectedIndex = 0;
 
            
@@ -165,7 +165,7 @@ namespace Patient_Information_System
                     patient_name AS PatientName, 
                     age AS Age, 
                     gender AS Gender,       
-                    date AS DateofVisit
+                    date AS `Date`
                 FROM medical_record
                 WHERE DATE(date) = CURDATE()
                   AND (patient_name LIKE @SearchTerm 
@@ -220,11 +220,11 @@ namespace Patient_Information_System
 
         private void CalculateChange()
         {
-            //numerical 
+             
             if (decimal.TryParse(txttotal.Text, out decimal totalBill) &&
                 decimal.TryParse(txtamount.Text, out decimal amountPaid))
             {
-                //branching
+                
                 if (amountPaid >= totalBill)
                 {
                     decimal change = amountPaid - totalBill;

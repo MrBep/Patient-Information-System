@@ -281,17 +281,23 @@ namespace Patient_Information_System
 
 
         doctorData doctorAccess = new doctorData();
+        private HashSet<string> usernameSet = new HashSet<string>();// Pag-declare ng HashSet para mag-imbak ang mga unique usernames
         private int selectedDoctor = -1;
+        private string selectedDoctorUsername;
 
         private void loaddoctorData()
         {
+            // Kinukuha ang listahan ng mga doctor mula sa database
             List<doctor> doctorlist = doctorAccess.getallDoctor();
 
+            usernameSet.Clear();  // Nililinis ang set ng usernames para maiwasan ang duplicates
             dtgwlistdoctor.DataSource = null;
             dtgwlistdoctor.Rows.Clear();
 
+            // I-loop ang bawat doctor mula sa list at idagdag sa DataGridView
             foreach (var doctor in doctorlist)
             {
+                usernameSet.Add(doctor.username);// add the username
                 dtgwlistdoctor.Rows.Add(
                     doctor.doctorID,
                     doctor.lastname,
@@ -311,15 +317,17 @@ namespace Patient_Information_System
 
         private string HashPassword(string password)
         {
+            // Gumagamit ng SHA256 algorithm para i-hash ang password
             using (SHA256 sha256 = SHA256.Create())
             {
+                // Kinukuha ang hash ng password sa pamamagitan ng encoding
                 byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder builder = new StringBuilder();
+                StringBuilder builder = new StringBuilder();// Binubuo ang string ng hash value
                 foreach (byte b in bytes)
                 {
                     builder.Append(b.ToString("x2"));
                 }
-                return builder.ToString();
+                return builder.ToString();// Ibinabalik ang hashed password
             }
         }//end of hashpassword
 
@@ -330,6 +338,12 @@ namespace Patient_Information_System
 
         private void btnsave_Click(object sender, EventArgs e)
         {
+            if (usernameSet.Contains(txtusername.Text))
+            {
+                MessageBox.Show("Username already exists. Please choose a different username.", "Duplicate Username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }//Conformation to kapag ang na type na username is existing na
+
             if (string.IsNullOrWhiteSpace(txtlastname.Text) ||
           string.IsNullOrWhiteSpace(txtfirstname.Text) ||
           dpbirthdate.Value == null ||
@@ -393,6 +407,7 @@ namespace Patient_Information_System
 
                 if (success)
                 {
+                    usernameSet.Add(newDoctor.username);//add the username
                     MessageBox.Show("Doctor added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     clearform();
                     loaddoctorData();
@@ -451,6 +466,7 @@ namespace Patient_Information_System
                 DataGridViewRow row = dtgwlistdoctor.Rows[e.RowIndex];
 
                 selectedDoctor = Convert.ToInt32(row.Cells[0]?.Value);
+                selectedDoctorUsername = row.Cells[9]?.Value?.ToString();
 
                 txtlastname.Text = row.Cells[1]?.Value?.ToString() ?? "";
                 txtfirstname.Text = row.Cells[2]?.Value?.ToString() ?? "";
@@ -510,6 +526,12 @@ namespace Patient_Information_System
 
         private void btnedit_Click(object sender, EventArgs e)
         {
+            if (txtusername.Text != null && txtusername.Text != selectedDoctorUsername && usernameSet.Contains(txtusername.Text))
+            {
+                MessageBox.Show("Username already exists. Please choose a different username.", "Duplicate Username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }//Conformation to kapag ang na type na username is existing na
+
             if (string.IsNullOrWhiteSpace(txtlastname.Text) ||
                 string.IsNullOrWhiteSpace(txtfirstname.Text) ||
                 dpbirthdate.Value == null ||
@@ -573,6 +595,8 @@ namespace Patient_Information_System
 
                     if (success)
                     {
+                        usernameSet.Remove(selectedDoctorUsername); // Remove old username
+                        usernameSet.Add(updateDoctor.username); // Add new username
                         MessageBox.Show("Doctor information updated successfully.");
                         loaddoctorData();
                         clearform();
@@ -651,6 +675,7 @@ namespace Patient_Information_System
 
                         if (isDeleted)
                         {
+                            usernameSet.Remove(dtgwlistdoctor.CurrentRow.Cells[9].Value.ToString());//Remove username
                             MessageBox.Show("Doctor information deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             loaddoctorData();
                             clearform();

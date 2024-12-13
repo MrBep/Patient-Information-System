@@ -121,7 +121,7 @@ namespace Patient_Information_System
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvAssignedPatients.Rows[e.RowIndex];
-
+                int billingId = Convert.ToInt32(row.Cells["BillingID"].Value);
                 txtpname.Text = row.Cells["PatientName"].Value?.ToString() ?? string.Empty;
                 txtage.Text = row.Cells["Age"].Value?.ToString() ?? string.Empty;
                 txtgender.Text = row.Cells["Gender"].Value?.ToString() ?? string.Empty;
@@ -163,23 +163,20 @@ namespace Patient_Information_System
                 {
                     conn.Open();
 
-
                     string query = @"
-                SELECT 
-                    billing_id, 
-                    patient_name, 
-                    age, 
-                    gender,
-                    consultation_fee,
-                    discount,
-                    total_bill,
-                    amount_paid,
-                    change_amount,
-                    date_created
-                FROM billing_details
-                WHERE DATE(date) = CURDATE()
-                  AND (patient_name LIKE @SearchTerm 
-                  OR patient_id LIKE @SearchTerm)";
+            SELECT 
+                billing_id AS BillingID, 
+                patient_name AS PatientName, 
+                age AS Age, 
+                gender AS Gender,
+                consultation_fee AS Consultation,
+                discount AS Discount,
+                total_bill AS Total,
+                amount_paid AS Amount,
+                change_amount AS `Change`,
+                date_created AS `Date`
+            FROM billing_details
+            WHERE patient_name LIKE @SearchTerm OR billing_id LIKE @SearchTerm";
 
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@SearchTerm", "%" + searchKeyword + "%");

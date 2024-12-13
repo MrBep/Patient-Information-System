@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Patient_Information_System.doctorUser;
 
 namespace Patient_Information_System
 {
@@ -223,17 +224,22 @@ namespace Patient_Information_System
 
 
         Staffdata staffaccess = new Staffdata();
+        private HashSet<string> usernameSet = new HashSet<string>();// Pag-declare ng HashSet para mag-imbak ang mga unique usernames
         private int selectedStaff = -1;
+        private string selectedStaffUsername;
 
         private void loadstaffdata()
         {
+            // Kinukuha ang listahan ng mga staff mula sa database
             List<Staff> staffList = staffaccess.Getallstaff();
 
+            usernameSet.Clear();// Nililinis ang set ng usernames para maiwasan ang duplicates
             dtgwlist.DataSource = null;
             dtgwlist.Rows.Clear();
 
-            foreach (var staff in staffList)
+            foreach (var staff in staffList)// I-loop ang bawat staff mula sa list at idagdag sa DataGridView
             {
+                usernameSet.Add(staff.username);// add the username
                 dtgwlist.Rows.Add(
                     staff.staffID,
                     staff.lastname,
@@ -253,13 +259,16 @@ namespace Patient_Information_System
 
         private string HashPassword(string password)
         {
+            // Gumagamit ng SHA256 algorithm para i-hash ang password
             using (SHA256 sha256 = SHA256.Create())
             {
+                // Kinukuha ang hash ng password sa pamamagitan ng encoding
                 byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                // Binubuo ang string ng hash value
                 StringBuilder builder = new StringBuilder();
                 foreach (byte b in bytes)
                 {
-                    builder.Append(b.ToString("x2"));
+                    builder.Append(b.ToString("x2"));// Ibinabalik ang hashed password
                 }
                 return builder.ToString();
             }
@@ -267,6 +276,12 @@ namespace Patient_Information_System
 
         private void btnsave_Click(object sender, EventArgs e)
         {
+            if (usernameSet.Contains(txtusername.Text))
+            {
+                MessageBox.Show("Username already exists. Please choose a different username.", "Duplicate Username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }//Conformation to kapag ang na type na username is existing na
+
             if (string.IsNullOrWhiteSpace(txtlastname.Text) ||
           string.IsNullOrWhiteSpace(txtfirstname.Text) ||
           dpbirthdate.Value == null ||
@@ -332,6 +347,7 @@ namespace Patient_Information_System
                 };
 
                 staffaccess.AddStaff(newSTAFF);
+                usernameSet.Add(newSTAFF.username);//add the username
                 MessageBox.Show("Staff information saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadstaffdata();
                 clearform();
@@ -386,6 +402,7 @@ namespace Patient_Information_System
                 DataGridViewRow row = dtgwlist.Rows[e.RowIndex];
 
                 selectedStaff = Convert.ToInt32(row.Cells[0]?.Value);
+                selectedStaffUsername = row.Cells[9]?.Value?.ToString();
 
                 txtlastname.Text = row.Cells[1]?.Value?.ToString() ?? "";
                 txtfirstname.Text = row.Cells[2]?.Value?.ToString() ?? "";
@@ -418,12 +435,18 @@ namespace Patient_Information_System
 
         private void btnedit_Click(object sender, EventArgs e)
         {
+            if (txtusername.Text != null && txtusername.Text != selectedStaffUsername && usernameSet.Contains(txtusername.Text))
+            {
+                MessageBox.Show("Username already exists. Please choose a different username.", "Duplicate Username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }//Conformation to kapag ang na type na username is existing na
+
             if (string.IsNullOrWhiteSpace(txtlastname.Text) ||
-    string.IsNullOrWhiteSpace(txtfirstname.Text) ||
-    dpbirthdate.Value == null ||
-    string.IsNullOrWhiteSpace(txtaddress.Text) ||
-    string.IsNullOrWhiteSpace(txtcpnum.Text) ||
-    cbrole.SelectedItem == null)
+                string.IsNullOrWhiteSpace(txtfirstname.Text) ||
+                dpbirthdate.Value == null ||
+                string.IsNullOrWhiteSpace(txtaddress.Text) ||
+                string.IsNullOrWhiteSpace(txtcpnum.Text) ||
+                cbrole.SelectedItem == null)
             {
                 MessageBox.Show("All fields are required. Please fill out all fields.", "Input Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -477,6 +500,8 @@ namespace Patient_Information_System
 
                     if (success)
                     {
+                        usernameSet.Remove(selectedStaffUsername); // Remove old username
+                        usernameSet.Add(UpdatedStaff.username); // Add new username
                         MessageBox.Show("Staff information updated successfully.");
                         loadstaffdata();
                         clearform();
@@ -560,6 +585,7 @@ namespace Patient_Information_System
 
                         if (isDeleted)
                         {
+                            usernameSet.Remove(dtgwlist.CurrentRow.Cells[9].Value.ToString());//Remove username
                             MessageBox.Show("Staff information deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             loadstaffdata();
                             clearform();

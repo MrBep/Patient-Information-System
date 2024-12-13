@@ -24,7 +24,7 @@ namespace Patient_Information_System
         {
             patientUser1.Visible = true;
             assignedToDoctor1.Visible = false;
-
+            listFollow1.Visible = false;
             patientUser patientForm = patientUser1 as patientUser;
 
             if (patientForm != null)
@@ -37,7 +37,7 @@ namespace Patient_Information_System
         {
             patientUser1.Visible = false;
             assignedToDoctor1.Visible = true;
-
+            listFollow1.Visible = false;
             assignedToDoctor assignForm = assignedToDoctor1 as assignedToDoctor;
 
             if (assignForm != null)
@@ -74,6 +74,13 @@ namespace Patient_Information_System
         private void lblmin_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnlistofpatienttobefollowup_Click(object sender, EventArgs e)
+        {
+            patientUser1.Visible = false;
+            assignedToDoctor1.Visible = false;
+            listFollow1.Visible = true;
         }
     }
 }

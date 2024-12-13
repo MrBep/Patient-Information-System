@@ -27,8 +27,9 @@ namespace Patient_Information_System
             lblname.Text = lastName;
 
             LoadAssignedPatients();
+            dtpdateoffollow.Enabled = false;
            
-          
+
         }
         public class database
         {
@@ -428,6 +429,7 @@ namespace Patient_Information_System
             txtsymptoms.Text = string.Empty;
             txtdiagnosis.Text = string.Empty;
             txtprescriptions.Text = string.Empty;
+            cbfollowup.Checked = false;
         }
 
         private void btnsave_Click(object sender, EventArgs e)
@@ -506,7 +508,28 @@ namespace Patient_Information_System
 
                         cmd.ExecuteNonQuery();
                     }
-                    LoadAssignedPatients();
+
+
+                    if (cbfollowup.Checked)
+                    {
+                        string followUpQuery = @"
+                    INSERT INTO followup_list (patient_name,gender,age,date_of_visit,follow_up_date,prescription) 
+                    VALUES (@PatientName,@Gender,@Age,NOW(), @FollowUpDate,@Prescription)";
+                        using (MySqlCommand cmd = new MySqlCommand(followUpQuery, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@PatientName", txtpname.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Gender", txtgender.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Age", int.Parse(txtage.Text.Trim()));
+                            cmd.Parameters.AddWithValue("@FollowUpDate", dtpdateoffollow.Value);
+                            cmd.Parameters.AddWithValue("@Prescription", prescription);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        
+                        MessageBox.Show($"Patient {txtpname.Text.Trim()} has been scheduled for a follow-up on {dtpdateoffollow.Value.ToString("MMMM dd, yyyy")}. Please inform the receptionist.", "Follow-Up Scheduled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    
 
                     string deleteQuery = "DELETE FROM assigned_patient WHERE patient_id = @PatientId";
                     MySqlCommand deleteCmd = new MySqlCommand(deleteQuery, conn);
@@ -514,7 +537,7 @@ namespace Patient_Information_System
                     deleteCmd.ExecuteNonQuery();
  
                     MessageBox.Show("Patient Medical Record Is Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
+                    LoadAssignedPatients();
                     clearform();
                 }
             }
@@ -565,6 +588,20 @@ namespace Patient_Information_System
             frmdoctorreferral df = new frmdoctorreferral(doctorId, lastName);
             df.Show();
             this.Hide();
+        }
+
+        private void cbfollowup_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cbfollowup.Checked)
+            {
+                dtpdateoffollow.Enabled = true;
+                
+            }
+            else
+            {
+                dtpdateoffollow.Enabled = false;
+                
+            }
         }
     }
 }

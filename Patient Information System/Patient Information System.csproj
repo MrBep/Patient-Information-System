@@ -161,6 +161,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="listFollow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="listFollow.Designer.cs">
+      <DependentUpon>listFollow.cs</DependentUpon>
+    </Compile>
     <Compile Include="medicalhistoryUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -228,6 +234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="listFollow.resx">
+      <DependentUpon>listFollow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="medicalhistoryUser.resx">
       <DependentUpon>medicalhistoryUser.cs</DependentUpon>
